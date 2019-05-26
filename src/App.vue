@@ -1,31 +1,40 @@
 <template>
     <div>
     <myheader></myheader>
-    <p v-if="msg.length > 0">
+    <searchbox></searchbox>
+    <showresult></showresult>
+    <!-- <p v-if="msg.length > 0">
         {{msg}}
-    </p>
-    <p v-else>
+    </p> -->
+    <!-- <p v-else>
         no text
-    </p>
-    <input type="text" v-model="msg">
-    <button @click="clear()">clear</button>
+    </p> -->
+    <!-- <input type="text" placeholder="検索したいワードを入力してください" v-model="msg">
+    <button @click="search()">検索</button> -->
     </div>
 </template>
 
 <script>
 import myheader from './components/myheader'
+import searchbox from './components/searchbox'
+import showresult from './components/showresult'
+
+
 
 export default {
     components: {
-        myheader
+        myheader,
+        searchbox,
+        showresult,
     },
-    data () {
-        return {
-            msg: 'Hello World!!'
-        }
-    },
+    // data () {
+    //     return {
+    //         msg: 'Hello World!!'
+    //     }
+    // },
     methods: {
-        clear () {
+        search () {
+            // flicker apiで検索して結果を返す
             this.msg = ''
         }
     },
