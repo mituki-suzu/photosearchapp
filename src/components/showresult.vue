@@ -5,7 +5,7 @@
         <p style="text-align:center;">今選択している画像のF値：{{result}}</p>
         <div id="showresult">
             <p class="result" v-for="(image) in images" :key="image.id">
-                <img :src="image.img" :alt="image.alt" @mouseover="show(image.alt)">
+                <img :src="image.img" :alt="image.alt" @click="show(image.alt)">
             </p>
         </div> 
     </div>
