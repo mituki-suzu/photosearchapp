@@ -1,7 +1,15 @@
 <template>
 <!-- このコンポーネントでは検索結果を表示する -->
-    
     <div>
+        {{searchValue}}
+        <div id="showresult">
+            <p v-if="loading">
+                Loading...
+            </p>
+            <p v-else class="result" v-for="simage in searchimages" :key="simage.id">
+                <img :src="simage.url_n">
+            </p>  
+        </div>
         <p style="text-align:center;">今選択している画像のF値：{{result}}</p>
         <div id="showresult">
             <p class="result" v-for="(image) in images" :key="image.id">
@@ -12,7 +20,12 @@
 </template>
 
 <script>
+import config from '../../config';
+import axios from 'axios';
+
 export default {
+    // 親からsearchboxのデータを受け取る
+    props: ["searchValue"],
     data() {
         return{
             result:"test",
@@ -26,13 +39,46 @@ export default {
                 {id: 6, img: require('@/assets/exsampleImages/im17.jpg'), alt:"f1.7"},
                 {id: 7, img: require('@/assets/exsampleImages/im18.jpg'), alt:"f1.8"},
             ],
+            loading: false,
+            searchimages: [],
         }
     },
     methods: {
-        show(alt) {
-            // flicker apiで検索して結果を返す
-            this.result = alt
+        search() {
+            this.loading = true;
+            this.fetchImages()
+            .then((response) => {
+                this.searchimages = response.data.photos.photo;
+                this.loading = false;
+            })
         },
+
+        fetchImages() {
+            return axios({
+                method: 'get',
+                url: 'https://api.flickr.com/services/rest',
+                params: {
+                    method: 'flickr.photos.search',
+                    api_key: config.api_key,
+                    text: this.searchValue,
+                    // tags: this.searchValue,
+                    extras: 'url_n, owner_name, date_taken, views',
+                    page: 1,
+                    format: 'json',
+                    nojsoncallback: 1,
+                    per_page: 16,
+                    media: 'photos',
+                    // tag_mode:'all',
+                    sort: 'relevance'
+                }
+            })
+        },
+    },
+    watch: {
+        // 親からデータを受け取るたびに実行
+        searchValue: function () {
+            this.search()
+        }
     },
 }
 </script>

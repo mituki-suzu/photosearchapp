@@ -1,8 +1,8 @@
 <template>
-    <div>
-    <myheader></myheader>
-    <searchbox id="sbox"></searchbox>
-    <showresult id="sresult"></showresult>
+    <div id="root">
+    <!-- <myheader></myheader> -->
+    <searchbox id="sbox" v-on:on-child-updated="childUpdated"></searchbox>
+    <showresult id="sresult" v-bind:search-value="parentValue"></showresult>
     <!-- <p v-if="msg.length > 0">
         {{msg}}
     </p> -->
@@ -27,34 +27,39 @@ export default {
         searchbox,
         showresult,
     },
-    // data () {
-    //     return {
-    //         msg: 'Hello World!!'
-    //     }
-    // },
+    // コンポーネント間通信（検索ワードを通信）
+    data () {
+        return {
+            parentValue: "海 風景"
+        }
+    },
     methods: {
-        search () {
-            // flicker apiで検索して結果を返す
-            this.msg = ''
+        childUpdated(v) {
+            this.parentValue = v;
         }
     },
 }
 </script>
 
 <style>
+#root{
+    width: 1080px;
+    margin: auto;
+}
+
 #sbox{
-    width:14%;
-    height: 90%;
+    width:250px;
+    height: 1000px;
     display: inline-block;
     float: left;
-    border-right: solid 1px black;
-    background-color: #8bc3f3;
+    /* border-right: solid 1px black; */
+    background-color: #393a45;
 }
 
 #sresult{
-    width:85%;
-    height: 90%;
+    width:830px;
+    height: 1000px;
     display: inline-block;
-    background-color: aliceblue;
+    background-color: #2e2e34;
 }
 </style>
