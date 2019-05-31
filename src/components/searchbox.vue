@@ -29,7 +29,7 @@
             <input type="checkbox" id="Panel1" class="on-off" />
             <label for="Panel1">絞り値</label>
             <div id="frange">
-                <p id="focalnum">F値 : {{num}}</p>
+                <p id="focalnum">F : <input id="focalnuminput" v-model="num"></p>
                 <div> 
                     <input type="range" value="1" min="0" max="10" step="0.1" v-model="num">
                 </div>
@@ -85,8 +85,9 @@
                 </p>
             </div>
         </div>
-
-        <button class="search-button" @click.prevent="updated" >検索</button>
+        <div style="text-align: center;">
+            <button class="search-button" @click.prevent="updated" >検索</button>
+        </div>
         </div>
 </template>
 
@@ -172,14 +173,31 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 }
 
 .search-button{
-    margin-right: 10%;
-    float: right;
+    width: 110px;
+    height: 30px;
+    margin: 20px 0 0 0;
+    background-color: #218789;
+    border-style: none;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 9px;
+    font-family: Noto Sans CJK JP;
 }
 
 #focalnum{
     margin: 14px 0 0 45px;
     color: #fff;
     font-size: calc(15% + 0.5vw);
+}
+
+#focalnuminput{
+    width: 65px;
+    color: white;
+    background-color:#2E2E34;
+    font-size: calc(30% + 0.5vw); 
+    text-indent: 5px;
+    border-style: none;
+    border-bottom: solid #50525D 1px;
 }
 
 /* 焦点距離 */
@@ -195,7 +213,8 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     float: left;
     margin: 14px 0 0 45px; 
     width: 6.5vw;
-    border: solid #393a45 1px;
+    /* border: solid #393a45 1px; */
+    border-style: none;
     border-bottom: solid #50525D 1px;
     outline:none;
     text-indent: 0.01px;
@@ -301,9 +320,6 @@ select:-moz-focusring {
     color: #fff;
 }
 
-input[type=checkbox] {
-  background-color: aqua;
-}
 
 /* ゴミ */
 
