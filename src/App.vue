@@ -3,14 +3,6 @@
     <!-- <myheader></myheader> -->
     <searchbox id="sbox" v-on:on-child-updated="childUpdated"></searchbox>
     <showresult id="sresult" v-bind:search-value="parentValue"></showresult>
-    <!-- <p v-if="msg.length > 0">
-        {{msg}}
-    </p> -->
-    <!-- <p v-else>
-        no text
-    </p> -->
-    <!-- <input type="text" placeholder="検索したいワードを入力してください" v-model="msg">
-    <button @click="search()">検索</button> -->
     </div>
 </template>
 
@@ -18,8 +10,6 @@
 import myheader from './components/myheader'
 import searchbox from './components/searchbox'
 import showresult from './components/showresult'
-
-
 
 export default {
     components: {
@@ -42,24 +32,36 @@ export default {
 </script>
 
 <style>
-#root{
+#root {
     width: 1080px;
+    height: 800px;
+    display: table;
+    /* height: 500px; */
+    /* padding-bottom: 100vh; */
+    /* margin-bottom: 100vh; */
     margin: auto;
+    background-color: #fff;
 }
 
-#sbox{
+#sbox {
+    position: fixed;
     width:250px;
-    height: 1000px;
-    display: inline-block;
-    float: left;
+    height: auto;
+    /* display: inline-block; */
+    display: table-cell;
+    padding: 0;
+    /* float: left; */
     /* border-right: solid 1px black; */
     background-color: #393a45;
 }
 
-#sresult{
+#sresult {
     width:830px;
-    height: 1000px;
-    display: inline-block;
-    background-color: #2e2e34;
+    height: auto;
+    display: table-cell;
+    padding: 0;
+    /* display: inline-block; */
+    /* border-left: solid 1px #51525C; */
+    background-color: #fff;
 }
 </style>

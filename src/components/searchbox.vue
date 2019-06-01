@@ -1,33 +1,10 @@
 <template>
     <div id="searchbox">
         <p id="title">Torumo</p>
-        <p id="subtitle">お気に入りを撮りに出かけよう</p>
-        <!-- <input class="search" type="text" placeholder="検索したいワードを入力してください" v-model="msg">
-        {{msg}} -->
-        <!-- F値 : {{num}}
-        <div> 
-            <input type="range" value="1" min="0" max="10" step="0.1" v-model="num">
-        </div> -->
-    
-        <!-- 画像選択のラジオボタン -->     
-        <!-- <div class="focal-length">
-            <div v-for="(image,id) in images" :key="image.id" class="focal-length-radio">
-            <label>
-               
-                <input type="radio" name="radio_image" :value="id" v-model="imgId" style="display:none; margin:0"><br>
-                <p v-if="image.id==imgId" style="margin:0">
-                    <img :src="image.imgSelect" class="focal-length-radio-img">
-                </p>
-                <p v-else  style="margin:0">
-                    <img :src="image.imgNonSelect" class="focal-length-radio-img">
-                </p>
-            </label>
-            </div>
-        </div> -->
 
         <div class="ac_menu">
             <input type="checkbox" id="Panel1" class="on-off" />
-            <label for="Panel1">絞り値</label>
+            <label class="panel" for="Panel1">絞り値</label>
             <div id="frange">
                 <p id="focalnum">F : <input id="focalnuminput" v-model="num"></p>
                 <div> 
@@ -35,9 +12,10 @@
                 </div>
             </div>
         </div>
+
         <div class="ac_menu">
             <input type="checkbox" id="Panel2" class="on-off" />
-            <label for="Panel2">焦点距離</label>
+            <label class="panel" for="Panel2">焦点距離</label>
             <div id='focusbase'>
                 <select id="focus" size="1" name="sample">
                     <option value="">▽　指定なし</option>
@@ -71,23 +49,31 @@
                 <p>mm</p>
             </div>
         </div>
+
         <div class="ac_menu">
             <input type="checkbox" id="Panel3" class="on-off" />
-            <label for="Panel3">カテゴリ</label>
+            <label class="panel" for="Panel3">カテゴリ</label>
             <div id="check">
-                <p>
-                <input id="box1" type="checkbox" value="1"/>
-                    風景<br>
-                <input id="box1" type="checkbox" value="2"/>
-                    人物<br>
-                <input id="box1" type="checkbox" value="2"/>
-                    ポートレート<br>
-                </p>
+                <div id="checkbox-list">
+                    <div id="checkbox-el">
+                        <input id="box1" name="aaa" type="checkbox" value="風景"/>
+                        <label for="box1" class="boxlabel">風景</label>
+                    </div>
+                    <div id="checkbox-el">
+                        <input id="box2" name="aaa" type="checkbox" value="人物"/>
+                            <label for="box2" class="boxlabel">人物</label><br>
+                    </div>
+                    <div id="checkbox-el">
+                        <input id="box3" name="aaa" type="checkbox" value="ポートレート"/>
+                            <label for="box3" class="boxlabel">ポートレート</label><br>
+                    </div>
+                </div>
             </div>
         </div>
         <div style="text-align: center;">
             <button class="search-button" @click.prevent="updated" >検索</button>
         </div>
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet">
         </div>
 </template>
 
@@ -98,19 +84,19 @@ import axios from 'axios';
 export default {
     data () {
         return {
-            // msg: "",
             num: '0',
-            // images: [
-            //     {id: 0, imgSelect: require('@/assets/30mmSelect.png'), imgNonSelect: require('@/assets/30mmNonSelect.png')},
-            //     {id: 1, imgSelect: require('@/assets/50mmSelect.png'), imgNonSelect: require('@/assets/50mmNonSelect.png')},
-            //     {id: 2, imgSelect: require('@/assets/75mmSelect.png'), imgNonSelect: require('@/assets/75mmNonSelect.png')},
-            // ],
-            // imgId: 0,
         }
     },
     methods: {
         //showresultにデータを送るために親にデータを送信
         updated() {
+            // console.print(document.getElementsByName('aaa'))
+            // var elements = document.getElementsByid('checkbox-el') ;
+            // for(var i = 0 ; i < elements.length ; i ++){
+            //     if(elements[i].checked == true){
+            //     aconsole.print(elements[i].value);
+            //     }
+            // }
             // this.$emit('on-child-updated', "f"+ this.num);
             this.$emit('on-child-updated', "f"+ this.num + " " + document.getElementById('focus').value);
             // タグの時はカンマ
@@ -121,18 +107,17 @@ export default {
 </script>
 
 <style>
-#title{
-    color: white;
-    font-size: 18px;
-    margin: 34px 0 0 45px;
-    font-family: 'Impact';
+#sbox {
+    background-image: url("../assets/titleback.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 
-#subtitle{
+#title{
     color: white;
-    font-size: 7px;
-    margin: 9px 0 30px 45px;
-    font-family: 'Pro"Hiragino Kaku Gothic ProW4'
+    font-size: 22px;
+    margin: 34px 0 39px 45px;
+    font-family: 'Impact';
 }
 
 input[type=range] {
@@ -151,7 +136,7 @@ input[type=range]::-webkit-slider-runnable-track {
     width: 17vw;
     height: 0.5vw;
     cursor: pointer;
-    background: linear-gradient(90deg, #19696A, #238F91);
+    background: linear-gradient(90deg, #695288, #E14658);
     border-radius: 5px;
 }
 /* WebKit・Blinkのつまみのスタイル */
@@ -176,25 +161,26 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     width: 110px;
     height: 30px;
     margin: 20px 0 0 0;
-    background-color: #218789;
+    background-color: #E14658;
     border-style: none;
     border-radius: 30px;
     color: #fff;
-    font-size: 9px;
-    font-family: Noto Sans CJK JP;
+    font-size: 14px;
+    font-family: 'Noto Sans JP';
+    margin-bottom: 20px;
 }
 
 #focalnum{
     margin: 14px 0 0 45px;
     color: #fff;
-    font-size: calc(15% + 0.5vw);
+    font-size: calc(25% + 0.5vw);
 }
 
 #focalnuminput{
     width: 65px;
     color: white;
     background-color:#2E2E34;
-    font-size: calc(30% + 0.5vw); 
+    font-size: calc(40% + 0.5vw); 
     text-indent: 5px;
     border-style: none;
     border-bottom: solid #50525D 1px;
@@ -203,7 +189,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 /* 焦点距離 */
 #focusbase p{
     float: left;
-    font-family: 'Noto Sans CJK JP';
+    font-family: 'Noto Sans JP';
     font-size: calc(15% + 0.5vw);
     color: #fff;
     margin: 18px 0 0 2px; 
@@ -233,7 +219,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 }
 
 /* メニューの部分 */
-.ac_menu label{
+.ac_menu .panel{
     background: #393a45;
     color: #fff;
     display: block;
@@ -265,9 +251,9 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     height: 100px;
 }
 
-.ac_menu label {
-	font-family: 'Noto Sans CJK JP';
-    font-size:  10px;
+.ac_menu .panel {
+	font-family: 'Noto Sans JP';
+    font-size:  12px;
 	line-height: 3;
 	position: relative;
 	display: block;
@@ -279,7 +265,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 }
 
 /* Icon */
-.ac_menu label::after {
+.ac_menu .panel::after {
 	line-height: 3;
 	position: absolute;
 	top: 0;
@@ -292,11 +278,11 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 	text-align: center;
 }
 
-.ac_menu input[type=checkbox] ~ label::after {
+.ac_menu input[type=checkbox] ~ .panel::after {
 	content: '▲';
 }
 
-.ac_menu input[type=checkbox]:checked ~ label::after {
+.ac_menu input[type=checkbox]:checked ~ .panel::after {
 	transform: rotateX(180deg);
 }
 
@@ -320,35 +306,54 @@ select:-moz-focusring {
     color: #fff;
 }
 
-
-/* ゴミ */
-
-/* #searchbox{
-    border: double 5px blue;
-    text-align: center;
-} */
-
-/* クラス内一番最初のdiv要素に付加 */
-    /* 親コンポーネントでマージン取る方向に転換 */
-/* .focal-length div:first-of-type{
-    margin-left: 10%;
-} */
-
-/* .focal-length{
-    margin: 0 10%;
-} */
-
-/* .focal-length-radio{
-    width:20%;
-    display: inline-block;
-    margin-right: 10%;
+#checkbox-list {
+    padding-top: 5px;
 }
 
-.focal-length-radio:last-child{
-    margin-right: 0;
-} */
-/* 
-.focal-length-radio-img{
-    width:100%;
-} */
+#checkbox-el {
+    margin:10px 0 0 20px;
+    font-size: 8px;
+}
+
+input[type=checkbox]{
+    display: none;
+}
+
+.boxlabel {
+    position: relative;
+    padding: 0 0 0 42px;
+}
+
+.boxlabel:hover:after {
+    border-color: #218789;
+}
+.boxlabel:after, .boxlabel:before{
+    position: absolute;
+    content: "";
+    display: block; 
+    top: 50%;
+}
+/* チェックボックス */
+.boxlabel:after {
+    left: 20px; 
+    margin: -8px 0 0 0;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+}
+/* チェック */
+.boxlabel:before {
+    left: 24.5px;
+    margin-top: -6px;
+    width: 3px;
+    height: 6px;
+    border-right: 2px solid #C75462;
+    border-bottom: 2px solid #C75462;
+    transform: rotate(45deg);
+    opacity: 0;
+}
+input[type=checkbox]:checked + .boxlabel:before {
+    opacity: 1;
+}
 </style>
