@@ -78,7 +78,7 @@ export default {
                     page: 1,
                     format: 'json',
                     nojsoncallback: 1,
-                    per_page: 10,
+                    per_page: 100,
                     media: 'photos',
                     // tag_mode:'all',
                     // 関連度の高い順
@@ -101,7 +101,7 @@ export default {
                     page: 1,
                     format: 'json',
                     nojsoncallback: 1,
-                    per_page: 10,
+                    per_page: 100,
                     media: 'photos',
                     // tag_mode:'all',
                     // 関連度の高い順
