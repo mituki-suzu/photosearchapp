@@ -1,6 +1,7 @@
 <template>
     <div id="searchbox">
-        <p id="title">Torumo</p>
+        <!-- <p id="title">Torumo</p> -->
+        <img id="title-image" src="../assets/logo.svg" >
 
         <div class="ac_menu">
             <input type="checkbox" id="Panel1" class="on-off" />
@@ -55,17 +56,9 @@
             <label class="panel" for="Panel3">カテゴリ</label>
             <div id="check">
                 <div id="checkbox-list">
-                    <div id="checkbox-el">
-                        <input id="box1" name="aaa" type="checkbox" value="風景"/>
-                        <label for="box1" class="boxlabel">風景</label>
-                    </div>
-                    <div id="checkbox-el">
-                        <input id="box2" name="aaa" type="checkbox" value="人物"/>
-                            <label for="box2" class="boxlabel">人物</label><br>
-                    </div>
-                    <div id="checkbox-el">
-                        <input id="box3" name="aaa" type="checkbox" value="ポートレート"/>
-                            <label for="box3" class="boxlabel">ポートレート</label><br>
+                    <div id="checkbox-el" v-for="cbox in checkboxes" :key="cbox.value">
+                        <input v-model="cbox.checked" id=cbox.value type="checkbox" value=cbox.value/>
+                        <label for=cbox.value class="boxlabel">{{cbox.label}}{{cbox.checked}}</label>
                     </div>
                 </div>
             </div>
@@ -85,20 +78,29 @@ export default {
     data () {
         return {
             num: '0',
+            checkboxes: [
+            { label: 'ポートレート', value: 'portrait', checked: false },
+            { label: '空', value: 'sky', checked: true },
+            { label: '風景', value: 'landscape', checked: false },
+            ],
         }
     },
     methods: {
         //showresultにデータを送るために親にデータを送信
         updated() {
-            // console.print(document.getElementsByName('aaa'))
-            // var elements = document.getElementsByid('checkbox-el') ;
-            // for(var i = 0 ; i < elements.length ; i ++){
-            //     if(elements[i].checked == true){
-            //     aconsole.print(elements[i].value);
-            //     }
-            // }
-            // this.$emit('on-child-updated', "f"+ this.num);
-            this.$emit('on-child-updated', "f"+ this.num + " " + document.getElementById('focus').value);
+            var text = "";
+            var i;
+            for(i = 0; i < this.checkboxes.length; i++){
+                if(this.checkboxes[i].checked){
+                    text = text + this.checkboxes[i].value;
+                }
+            }
+            if(this.num != 0){
+                text = text + " " + "f"+ this.num
+            }
+            text = text + " " + document.getElementById('focus').value;
+            
+            this.$emit('on-child-updated', text);
             // タグの時はカンマ
             // this.$emit('on-child-updated', "f"+ this.num + "," + document.getElementById('focus').value);
         },
@@ -113,11 +115,16 @@ export default {
     background-repeat: no-repeat;
 }
 
-#title{
+/* #title{
     color: white;
     font-size: 22px;
     margin: 34px 0 39px 45px;
     font-family: 'Impact';
+} */
+
+#title-image{
+    margin: 40px 0 30px 40px;
+    width:120px;
 }
 
 input[type=range] {
@@ -154,7 +161,7 @@ input[type=range]::-webkit-slider-thumb {
 
 /* WebKit・Blinkのfocus時のスタイル */
 input[type=range]:focus::-webkit-slider-runnable-track {
-    background: linear-gradient(90deg, #19696A, #238F91);
+    background: linear-gradient(90deg, #695288, #E14658);
 }
 
 .search-button{
