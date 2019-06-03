@@ -58,7 +58,7 @@
                 <div id="checkbox-list">
                     <div id="checkbox-el" v-for="cbox in checkboxes" :key="cbox.value">
                         <input v-model="cbox.checked" id=cbox.value type="checkbox" value=cbox.value/>
-                        <label for=cbox.value class="boxlabel">{{cbox.label}}{{cbox.checked}}</label>
+                        <label for=cbox.value class="boxlabel">{{cbox.label}}</label>
                     </div>
                 </div>
             </div>
@@ -80,8 +80,8 @@ export default {
             num: '0',
             checkboxes: [
             { label: 'ポートレート', value: 'portrait', checked: false },
-            { label: '空', value: 'sky', checked: true },
-            { label: '風景', value: 'landscape', checked: false },
+            // { label: '空', value: 'sky', checked: false },
+            // { label: '風景', value: 'landscape', checked: false },
             ],
         }
     },

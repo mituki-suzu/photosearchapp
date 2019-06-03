@@ -2,7 +2,6 @@
 <!-- このコンポーネントでは検索結果を表示する -->
     <div>
         <p id="subtitle">お気に入りを撮りに出かけよう。</p>
-        {{searchValue}}
         <expandimages v-bind:image-title="t" v-bind:image-url="a" v-bind:image-tag="b"></expandimages>
 
         <input id="keyword" type="text" placeholder="キーワードを入力して検索" v-model="keyword">
@@ -123,7 +122,7 @@ export default {
 </script>
 
 <style>
-#subtitle{
+#subtitle {
     color: #76727B;
     font-size: 7px;
     font-family: 'Noto Sans JP';
