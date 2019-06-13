@@ -8,9 +8,9 @@
         <button id="keywordbutton" @click.prevent="search(1)">検索</button>
         <!-- {{searchValue}} -->
         <div id="showresult">
-            <p v-if="loading" style="height:100vh; color:black; text-align:center; fontsize: 30px; vertical-align: middle;">
-                Loading...
-            </p>
+            <div v-if="loading" style="">
+                <div id="loading" style="font-size:50px;">Loading...</div>
+            </div>
             <p v-else class="result">
                 <img :src="simage.url_n" v-for="simage in searchimages" :key="simage.id" @click="expandimg(simage.title, simage.url_n, simage.tags)">
             </p>  
@@ -33,7 +33,7 @@ export default {
     data() {
         return{
             result:"test",
-            loading: false,
+            loading: true,
             searchimages: [],
             keyword: "",
             a: "none",

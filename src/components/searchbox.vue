@@ -286,7 +286,8 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 }
 
 .ac_menu input[type=checkbox] ~ .panel::after {
-	content: '▲';
+	content: '∧';
+    color:#E14658;
 }
 
 .ac_menu input[type=checkbox]:checked ~ .panel::after {
