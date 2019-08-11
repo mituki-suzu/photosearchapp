@@ -9,7 +9,7 @@
         <!-- {{searchValue}} -->
         <div id="showresult">
             <div v-if="loading" style="">
-                <div id="loading" style="font-size:50px;">Loading...</div>
+                <div id="loading" style="font-size:20px;">Loading...</div>
             </div>
             <p v-else class="result">
                 <img :src="simage.url_n" v-for="simage in searchimages" :key="simage.id" @click="expandimg(simage.title, simage.url_n, simage.tags)">
@@ -33,7 +33,7 @@ export default {
     data() {
         return{
             result:"test",
-            loading: true,
+            loading: false,
             searchimages: [],
             keyword: "",
             a: "none",
