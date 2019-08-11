@@ -9,10 +9,11 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "postinstall": "yarn build",
     "start": "node server.js"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "core-js": "^2.6.5",
     "express": "^4.17.1",
     "vue": "^2.6.10"
