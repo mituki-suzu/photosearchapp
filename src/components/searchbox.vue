@@ -19,7 +19,7 @@
             <label class="panel" for="Panel2">焦点距離</label>
             <div id='focusbase'>
                 <select id="focus" size="1" name="sample">
-                    <option value="">▽　指定なし</option>
+                    <option value="">▽  指定なし</option>
                     <option value="14mm">14</option>
                     <option value="15mm">15</option>
                     <option value="17mm">17</option>
@@ -71,8 +71,8 @@
 </template>
 
 <script>
-import config from '../../config';
-import axios from 'axios';
+// import config from '../../config';
+// import axios from 'axios';
 
 export default {
     data () {
