@@ -50,8 +50,8 @@ export default {
         search(n) {
             this.loading = true;
             if(n == 0){
-                console.print('入っているものは...');
-                console.print(config.api_key);
+                console.log('入っているものは...');
+                console.log(config.api_key);
                 this.fetchImages0()
                 .then((response) => {
                     this.searchimages = response.data.photos.photo;
