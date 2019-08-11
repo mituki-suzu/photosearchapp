@@ -1,5 +1,5 @@
 
 export default {
-    api_key: "ENV['FlICKR_API_KEY']"
+    api_key: "process.env.FlICKR_API_KEY"
   }
 
