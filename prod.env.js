@@ -1,4 +1,4 @@
 module.exports = {
     NODE_ENV: '"production"',
-    REST_API_URL: JSON.stringify(process.env.FlICKR_API_KEY)
+    FlICKR_API_KEY: JSON.stringify(process.env.FlICKR_API_KEY)
   }
