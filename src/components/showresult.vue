@@ -21,7 +21,7 @@
 <script>
 import expandimages from './expandimages'
 
-import config from '../../config2';
+import config from '../../config';
 import axios from 'axios';
 
 export default {
