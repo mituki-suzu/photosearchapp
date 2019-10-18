@@ -57,8 +57,8 @@
             <div id="check">
                 <div id="checkbox-list">
                     <div id="checkbox-el" v-for="cbox in checkboxes" :key="cbox.value">
-                        <input v-model="cbox.checked" id=cbox.value type="checkbox" value=cbox.value/>
-                        <label for=cbox.value class="boxlabel">{{cbox.label}}</label>
+                        <input v-model="cbox.checked" :id=cbox.value type="checkbox" value=cbox.value/>
+                        <label :for=cbox.value class="boxlabel">{{cbox.label}}</label>
                     </div>
                 </div>
             </div>
@@ -80,8 +80,10 @@ export default {
             num: '0',
             checkboxes: [
             { label: 'ポートレート', value: 'portrait', checked: false },
-            // { label: '空', value: 'sky', checked: false },
-            // { label: '風景', value: 'landscape', checked: false },
+            { label: '空', value: 'sky', checked: false },
+            { label: '風景', value: 'landscape', checked: false },
+            { label: '食べ物', value: 'food', checked: false },
+            { label: '自然', value: 'nature', checked: false },
             ],
         }
     },
@@ -92,7 +94,7 @@ export default {
             var i;
             for(i = 0; i < this.checkboxes.length; i++){
                 if(this.checkboxes[i].checked){
-                    text = text + this.checkboxes[i].value;
+                    text = text + this.checkboxes[i].value + " ";
                 }
             }
             if(this.num != 0){
@@ -129,7 +131,7 @@ export default {
 
 input[type=range] {
     -webkit-appearance: none;
-    margin: 33px 0 0 45px;
+    margin: 33px 0 20px 45px;
     width: 175px;
     background: #393a45;
 }
@@ -180,14 +182,14 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 #focalnum{
     margin: 14px 0 0 45px;
     color: #fff;
-    font-size: calc(25% + 0.5vw);
+    font-size: calc(7px + 0.5vw);
 }
 
 #focalnuminput{
     width: 65px;
     color: white;
     background-color:#2E2E34;
-    font-size: calc(40% + 0.5vw); 
+    font-size: calc(7px + 0.5vw); 
     text-indent: 5px;
     border-style: none;
     border-bottom: solid #50525D 1px;
@@ -197,15 +199,15 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 #focusbase p{
     float: left;
     font-family: 'Noto Sans JP';
-    font-size: calc(15% + 0.5vw);
+    font-size: calc(7px + 0.5vw);
     color: #fff;
     margin: 18px 0 0 2px; 
 }
 
 #focus{
     float: left;
-    margin: 14px 0 0 45px; 
-    width: 6.5vw;
+    margin: 14px 0 10px 45px; 
+    width: calc(50px + 2.0vw);
     /* border: solid #393a45 1px; */
     border-style: none;
     border-bottom: solid #50525D 1px;
@@ -214,7 +216,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     text-overflow: '';
     background: none transparent;
     vertical-align: middle;
-    font-size: calc(15% + 0.5vw);
+    font-size: calc(7px + 0.5vw);
     color: #fff;
     -webkit-appearance: button;
     -moz-appearance: button;
@@ -255,7 +257,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     overflow: hidden;
 }
 .ac_menu input[type="checkbox"].on-off:checked ~ div{
-    height: 100px;
+    height: auto;
 }
 
 .ac_menu .panel {
@@ -316,6 +318,7 @@ select:-moz-focusring {
 
 #checkbox-list {
     padding-top: 5px;
+    margin-bottom: 10px;
 }
 
 #checkbox-el {
@@ -330,6 +333,7 @@ input[type=checkbox]{
 .boxlabel {
     position: relative;
     padding: 0 0 0 42px;
+    font-size: calc(7px + 0.5vw);
 }
 
 .boxlabel:hover:after {

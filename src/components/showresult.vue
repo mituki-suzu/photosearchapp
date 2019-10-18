@@ -8,8 +8,8 @@
         <button id="keywordbutton" @click.prevent="search(1)">検索</button>
         <!-- {{searchValue}} -->
         <div id="showresult">
-            <div v-if="loading" style="">
-                <div id="loading" style="font-size:20px;">Loading...</div>
+            <div v-if="loading" style="text-align:center;">
+                <div id="loading" >Loading...</div>
             </div>
             <p v-else class="result">
                 <img :src="simage.url_n" v-for="simage in searchimages" :key="simage.id" @click="expandimg(simage.title, simage.url_n, simage.tags)">
@@ -21,7 +21,7 @@
 <script>
 import expandimages from './expandimages'
 
-import config from '../../config2';
+import config from '../../config';
 import axios from 'axios';
 
 export default {
@@ -156,6 +156,11 @@ export default {
     border-radius: 3px 0 0 3px;
     color: #fff;
     font-size: 9px;
+}
+
+#loading {
+    font-size: calc(10px + 0.5vw);
+    margin: 40vh 50px 0 0;
 }
 
 #showresult {

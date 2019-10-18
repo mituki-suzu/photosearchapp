@@ -34,6 +34,7 @@ export default {
 <style>
 #root {
     width: 1080px;
+    min-width: 500px;
     height: 800px;
     display: table;
     /* height: 500px; */
